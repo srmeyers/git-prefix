@@ -3,6 +3,19 @@
 	"displayName": "Git Prefix",
 	"description": "Prefix commit message with value in branch name.",
 	"version": "0.0.1",
+	"publisher": "srmeyers",
+	"author": {
+    "name": "Samuel Meyers"
+  },
+	"license": "MIT",
+	"homepage": "https://github.com/srmeyers/git-prefix/blob/master/README.md",
+    "bugs": {
+        "url": "https://github.com/srmeyers/git-prefix/issues"
+    },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/srmeyers/git-prefix.git"
+	},
 	"engines": {
 		"vscode": "^1.32.0"
 	},
@@ -10,6 +23,14 @@
 		"Other"
 	],
 	"icon": "icon.png",
+	"preview": true,
+	"galleryBanner": {
+  	"color": "#f0efe7",
+    "theme": "light"
+  },
+	"keywords": [
+			"git"
+	],
 	"activationEvents": [
 		"onCommand:gitPrefix.setMessage"
 	],

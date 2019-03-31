@@ -21,7 +21,7 @@ This extension contributes the following settings using JavaScript regular expre
 * `gitPrefix.patternIgnoreCase`: Ignore case in pattern.  Default is `false`.
 * `gitPrefix.replacement`: Regular expression replacement string to place into commit message. Default is `"[$1] "`.
 
-### 1.0.0
+### 0.0.1
 
 Initial release of Git Prefix
 
