@@ -1,4 +1,4 @@
-# Git Prefix README
+# Git Prefix
 
 ## Features
 
@@ -7,14 +7,15 @@ Insert a value from the current branch name into the Source Control Git Message 
 ## Usage
 
 - Open the Command Palette `Ctrl+Shift+P` (`Cmd+Shift+P` on macOS)
-- Type `Git Prefix ` and hit `return`
-- The matching branch pattern if prefixed in the Git Message box
+- Type `Git Prefix Commit Message` and hit `return`
+- The matching branch pattern is prefixed in the Git Message box
 
 ## Extension Settings
 
 This extension contributes the following settings using JavaScript regular expression syntax:
 
-* `gitPrefix.pattern`: Regular expression pattern to match in the branch name. Default is `(.*)`
+* `gitPrefix.pattern`: Regular expression pattern to match in the branch name. Default matches
+entire branch name.
   > Tip: Match a ticket in a branch created by Jira using a pattern such as: `.*(TEST-\d+).*`
 
 
