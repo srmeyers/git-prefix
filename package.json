@@ -2,7 +2,7 @@
 	"name": "git-prefix",
 	"displayName": "Git Prefix",
 	"description": "Prefix commit message with value in branch name.",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"publisher": "srmeyers",
 	"author": {
     "name": "Samuel Meyers"
@@ -22,8 +22,8 @@
 	"categories": [
 		"Other"
 	],
-	"icon": "icon.png",
-	"preview": true,
+	"icon": "images/icon.png",
+	"preview": false,
 	"galleryBanner": {
   	"color": "#f0efe7",
     "theme": "light"

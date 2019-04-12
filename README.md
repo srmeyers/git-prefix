@@ -1,8 +1,15 @@
+[![](https://vsmarketplacebadge.apphb.com/version-short/srmeyers.git-prefix.svg)](https://marketplace.visualstudio.com/items?itemName=srmeyers.git-prefix)
+
+
 # Git Prefix
 
 ## Features
 
 Insert a value from the current branch name into the Source Control Git Message box.
+
+
+![Demo Git Prefix](images/demo.gif)
+
 
 ## Usage
 
@@ -22,8 +29,5 @@ entire branch name.
 * `gitPrefix.patternIgnoreCase`: Ignore case in pattern.  Default is `false`.
 * `gitPrefix.replacement`: Regular expression replacement string to place into commit message. Default is `"[$1] "`.
 
-### 0.0.1
-
-Initial release of Git Prefix
 
 **Happy Committing!**
