@@ -5,13 +5,13 @@
 	"version": "1.0.0",
 	"publisher": "srmeyers",
 	"author": {
-    "name": "Samuel Meyers"
-  },
+		"name": "Samuel Meyers"
+	},
 	"license": "MIT",
 	"homepage": "https://github.com/srmeyers/git-prefix/blob/master/README.md",
-    "bugs": {
-        "url": "https://github.com/srmeyers/git-prefix/issues"
-    },
+	"bugs": {
+		"url": "https://github.com/srmeyers/git-prefix/issues"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/srmeyers/git-prefix.git"
@@ -25,11 +25,11 @@
 	"icon": "images/icon.png",
 	"preview": false,
 	"galleryBanner": {
-  	"color": "#f0efe7",
-    "theme": "light"
-  },
+		"color": "#f0efe7",
+		"theme": "light"
+	},
 	"keywords": [
-			"git"
+		"git"
 	],
 	"activationEvents": [
 		"onCommand:gitPrefix.setMessage"
@@ -40,29 +40,42 @@
 			"type": "object",
 			"title": "GitPrefix",
 			"properties": {
-					"gitPrefix.pattern": {
-							"type": "string",
-							"default": "(.*)",
-							"description": "A regular expression to extract from branch name. Should match entire branch."
-					},
-					"gitPrefix.patternIgnoreCase": {
-							"type": "boolean",
-							"default": false,
-							"description": "Ignore case in pattern."
-					},
-					"gitPrefix.replacement": {
-							"type": "string",
-							"default": "[$1] ",
-							"description": "Content to place in commit message."
-					}
+				"gitPrefix.pattern": {
+					"type": "string",
+					"default": "(.*)",
+					"description": "A regular expression to extract from branch name. Should match entire branch."
+				},
+				"gitPrefix.patternIgnoreCase": {
+					"type": "boolean",
+					"default": false,
+					"description": "Ignore case in pattern."
+				},
+				"gitPrefix.replacement": {
+					"type": "string",
+					"default": "[$1] ",
+					"description": "Content to place in commit message."
+				}
 			}
 		},
 		"commands": [
 			{
 				"command": "gitPrefix.setMessage",
-				"title": "Git Prefix Commit Message"
+				"title": "Git Prefix Commit Message",
+				"icon": {
+					"dark": "images/prefix-commit.svg",
+					"light": "images/prefix-commit_light.svg"
+				}
 			}
-		]
+		],
+		"menus": {
+			"scm/title": [
+				{
+					"command": "gitPrefix.setMessage",
+					"when": "scmProvider == git",
+					"group": "navigation"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
