@@ -3,6 +3,11 @@
 
 # Git Prefix
 
+## New in 1.1.0
+Button to run `Git Prefix Commit Message` command:
+
+![Use button](images/git-prefix-button.gif)
+
 ## Features
 
 Insert a value from the current branch name into the Source Control Git Message box.
