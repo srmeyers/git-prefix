@@ -50,6 +50,11 @@
 					"default": false,
 					"description": "Ignore case in pattern."
 				},
+				"gitPrefix.replacementIsAFunction": {
+					"type": "boolean",
+					"default": false,
+					"description": "Replacement string is a function witch parameters are the matching patterns."
+				},
 				"gitPrefix.replacement": {
 					"type": "string",
 					"default": "[$1] ",
