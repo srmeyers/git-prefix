@@ -32,6 +32,8 @@ entire branch name.
 
 
 * `gitPrefix.patternIgnoreCase`: Ignore case in pattern.  Default is `false`.
+* `gitPrefix.replacementIsAFunction`: If true, the replacement string is a function where parameters (p1, p2, p3, etc.) are corresponding with the matching patterns $1, $2, $3, etc.. Default is false.
+  > Example : (p1, p2, p3, p4) => p1 + (p3 ? `(${p2}): ${p4.replace(/-/g, ' ')}` : p2.replace(/-/g, ' '))
 * `gitPrefix.replacement`: Regular expression replacement string to place into commit message. Default is `"[$1] "`.
 
 

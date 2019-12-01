@@ -33,12 +33,18 @@ export function activate(context: vscode.ExtensionContext) {
 async function prefixCommit(repository: Repository) {
 	const prefixPattern: string = vscode.workspace.getConfiguration().get("gitPrefix.pattern") || '(.*)';
 	const ignoreCase: boolean = vscode.workspace.getConfiguration().get("gitPrefix.patternIgnoreCase") || false;
+	const replacementIsAFunction: boolean = vscode.workspace.getConfiguration().get("gitPrefix.replacementIsAFunction") || false;
 	const branchRegEx = ignoreCase ? new RegExp(prefixPattern, 'i') : new RegExp(prefixPattern);
 	const prefixReplacement: string = vscode.workspace.getConfiguration().get("gitPrefix.replacement") || '[$1] ';
 	const branchName = repository.state.HEAD && repository.state.HEAD.name || '';
 
 	if (branchRegEx.test(branchName)) {
-		const ticket = branchName.replace(branchRegEx, prefixReplacement);
+		let ticket;
+		if (replacementIsAFunction) {
+			ticket = branchName.replace(branchRegEx, (_substring: string, ...args: any[]) => eval(prefixReplacement)(...args));
+		} else {
+			ticket = branchName.replace(branchRegEx, prefixReplacement);
+		}
 		repository.inputBox.value = `${ticket}${repository.inputBox.value}`;
 	} else {
 		const message = `Pattern ${prefixPattern} not found in branch ${branchName}`;
