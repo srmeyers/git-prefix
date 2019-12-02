@@ -3,12 +3,13 @@
 
 # Git Prefix
 
-## New in 1.1.0
+## New in 1.2.0
+Use a function return expression in the replacment string for more complex cases.
+
+## Features
 Button to run `Git Prefix Commit Message` command:
 
 ![Use button](images/git-prefix-button.gif)
-
-## Features
 
 Insert a value from the current branch name into the Source Control Git Message box.
 
@@ -32,8 +33,8 @@ entire branch name.
 
 
 * `gitPrefix.patternIgnoreCase`: Ignore case in pattern.  Default is `false`.
-* `gitPrefix.replacementIsAFunction`: If true, the replacement string is a function where parameters (p1, p2, p3, etc.) are corresponding with the matching patterns $1, $2, $3, etc.. Default is false.
-  > Example : (p1, p2, p3, p4) => p1 + (p3 ? `(${p2}): ${p4.replace(/-/g, ' ')}` : p2.replace(/-/g, ' '))
+* `gitPrefix.replacementIsFunction`: If true, the replacement string is a function return expression where parameters (p1, p2, p3, etc.) correspond to the matching patterns $1, $2, $3, etc.. Default is false.
+  > Example : p1 + (p3 ? \`(${p2}): ${p4.replace(/-/g, ' ')}\` : p2.replace(/-/g, ' '))
 * `gitPrefix.replacement`: Regular expression replacement string to place into commit message. Default is `"[$1] "`.
 
 

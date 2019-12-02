@@ -2,7 +2,7 @@
 	"name": "git-prefix",
 	"displayName": "Git Prefix",
 	"description": "Prefix commit message with value in branch name.",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"publisher": "srmeyers",
 	"author": {
 		"name": "Samuel Meyers"
@@ -50,10 +50,10 @@
 					"default": false,
 					"description": "Ignore case in pattern."
 				},
-				"gitPrefix.replacementIsAFunction": {
+				"gitPrefix.replacementIsFunction": {
 					"type": "boolean",
 					"default": false,
-					"description": "Replacement string is a function witch parameters are the matching patterns."
+					"description": "Replacement string is a function return expression with parameters (p1, p2, p3...) matching patterns."
 				},
 				"gitPrefix.replacement": {
 					"type": "string",

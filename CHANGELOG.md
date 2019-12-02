@@ -2,6 +2,9 @@
 
 All notable changes to the "git-prefix" extension will be documented in this file.
 
+### 1.2.0 (2019-12-01)
+- Added option to use a function return expression in the replacment string for more complex cases.
+
 ### 1.1.0 (2019-05-23)
 - Added button to run Git Prefix Commit Message command against current repository
 
