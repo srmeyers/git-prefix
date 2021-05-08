@@ -2,6 +2,9 @@
 
 All notable changes to the "git-prefix" extension will be documented in this file.
 
+### 1.2.1 (2021-05-08)
+- Update dependencies
+
 ### 1.2.0 (2019-12-01)
 - Added option to use a function return expression in the replacment string for more complex cases.
 
