@@ -54,6 +54,7 @@ async function prefixCommit (repository: Repository) {
       ticket = branchName.replace(branchRegEx, prefixReplacement)
     }
     repository.inputBox.value = `${ticket}${repository.inputBox.value}`
+    focusInputBox()
   } else {
     const message = `Pattern ${prefixPattern} not found in branch ${branchName}`
     const editPattern = 'Edit Pattern'
@@ -63,6 +64,10 @@ async function prefixCommit (repository: Repository) {
       vscode.commands.executeCommand('settings.action.clearSearchResults')
     }
   }
+}
+
+function focusInputBox () {
+  vscode.commands.executeCommand('workbench.scm.focus')
 }
 
 function getGitExtension () {
