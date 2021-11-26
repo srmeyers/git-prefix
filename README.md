@@ -32,6 +32,7 @@ entire branch name.
   > Tip: Match a ticket in a branch created by Jira using a pattern such as: `.*(TEST-\d+).*`
 
 
+* `gitPrefix.isSuffix`: Suffix expression instead of prefixing it.  Default is `false`.
 * `gitPrefix.patternIgnoreCase`: Ignore case in pattern.  Default is `false`.
 * `gitPrefix.replacementIsFunction`: If true, the replacement string is a function return expression where parameters (p1, p2, p3, etc.) correspond to the matching patterns $1, $2, $3, etc.. Default is false.
   > Example : p1 + (p3 ? \`(${p2}): ${p4.replace(/-/g, ' ')}\` : p2.replace(/-/g, ' '))

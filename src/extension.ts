@@ -31,11 +31,8 @@ export function activate (context: vscode.ExtensionContext) {
 }
 
 async function prefixCommit (repository: Repository) {
-  const prefixPattern: string = vscode.workspace.getConfiguration().get('gitPrefix.pattern') || '(.*)'
-  const ignoreCase: boolean = vscode.workspace.getConfiguration().get('gitPrefix.patternIgnoreCase') || false
-  const replacementIsFunction: boolean = vscode.workspace.getConfiguration().get('gitPrefix.replacementIsFunction') || false
-  const branchRegEx = ignoreCase ? new RegExp(prefixPattern, 'i') : new RegExp(prefixPattern)
-  const prefixReplacement: string = vscode.workspace.getConfiguration().get('gitPrefix.replacement') || '[$1] '
+  const { isSuffix, replacement = '[$1] ', pattern = '(.*)', patternIgnoreCase, replacementIsFunction } = vscode.workspace.getConfiguration('gitPrefix')
+  const branchRegEx = patternIgnoreCase ? new RegExp(pattern, 'i') : new RegExp(pattern)
   const branchName = (repository.state.HEAD && repository.state.HEAD.name) || ''
 
   if (branchRegEx.test(branchName)) {
@@ -47,15 +44,15 @@ async function prefixCommit (repository: Repository) {
           // eslint-disable-next-line no-new-func
           Function(
             ...(Array(args.length).fill(1).map((x, y) => `p${x + y}`)), // Build args 'p1', 'p2', 'p3'....
-            `return ${prefixReplacement}`
+            `return ${replacement}`
           )(...args)
       )
     } else {
-      ticket = branchName.replace(branchRegEx, prefixReplacement)
+      ticket = branchName.replace(branchRegEx, replacement)
     }
-    repository.inputBox.value = `${ticket}${repository.inputBox.value}`
+    repository.inputBox.value = isSuffix ? `${repository.inputBox.value}${ticket}` : `${ticket}${repository.inputBox.value}`
   } else {
-    const message = `Pattern ${prefixPattern} not found in branch ${branchName}`
+    const message = `Pattern ${pattern} not found in branch ${branchName}`
     const editPattern = 'Edit Pattern'
     const result = await vscode.window.showErrorMessage(message, { modal: false }, editPattern)
     if (result === editPattern) {
