@@ -59,6 +59,11 @@
 					"type": "string",
 					"default": "[$1] ",
 					"description": "Content to place in commit message."
+				},
+				"gitPrefix.isSuffix": {
+					"type": "boolean",
+					"default": false,
+					"description": "Suffix the pattern instead of prefix"
 				}
 			}
 		},
