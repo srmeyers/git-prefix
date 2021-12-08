@@ -2,6 +2,9 @@
 
 All notable changes to the "git-prefix" extension will be documented in this file.
 
+### 1.3.0 (2021-12-07)
+- Added Is Suffix setting to append to end of commit message
+
 ### 1.2.1 (2021-05-08)
 - Update dependencies
 

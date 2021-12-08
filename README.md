@@ -3,8 +3,8 @@
 
 # Git Prefix
 
-## New in 1.2.0
-Use a function return expression in the replacment string for more complex cases.
+## New in 1.3.0
+Setting `Is Suffix` appends at end of commit message.
 
 ## Features
 Button to run `Git Prefix Commit Message` command:

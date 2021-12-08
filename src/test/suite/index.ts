@@ -13,7 +13,7 @@ export function run (): Promise<void> {
   return new Promise((resolve, reject) => {
     glob('**/**.test.js', { cwd: testsRoot }, (err, files) => {
       if (err) {
-        return e(err)
+        return reject(err)
       }
 
       // Add files to the test suite
