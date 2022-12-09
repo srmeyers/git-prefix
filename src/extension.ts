@@ -14,7 +14,7 @@ export function activate (context: vscode.ExtensionContext) {
 
     if (uri) {
       const selectedRepository = git.repositories.find(repository => {
-        return repository.rootUri.path === uri._rootUri.path
+        return repository.rootUri.path === uri.rootUri.path
       })
 
       if (selectedRepository) {
