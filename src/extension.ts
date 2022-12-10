@@ -68,5 +68,6 @@ function getGitExtension () {
   return gitExtension && gitExtension.getAPI(1)
 }
 
-// called when extension is deactivated
-export function deactivate () { }
+export function deactivate () { 
+  // called when extension is deactivated
+}
