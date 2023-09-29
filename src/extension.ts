@@ -31,29 +31,18 @@ export function activate (context: vscode.ExtensionContext) {
 }
 
 async function prefixCommit (repository: Repository) {
-  const { isSuffix, replacement = '[$1] ', pattern = '(.*)', patternIgnoreCase, replacementIsFunction } = vscode.workspace.getConfiguration('gitPrefix')
-  const branchRegEx = patternIgnoreCase ? new RegExp(pattern, 'i') : new RegExp(pattern)
+  const { isSuffix, pattern = '(.*)', patternIgnoreCase } = vscode.workspace.getConfiguration('gitPrefix')
+
+  const branchRegEx = new RegExp(pattern, patternIgnoreCase ? 'i' : '')
   const branchName = (repository.state.HEAD && repository.state.HEAD.name) || ''
 
   if (branchRegEx.test(branchName)) {
-    let ticket
-    if (replacementIsFunction) {
-      ticket = branchName.replace(
-        branchRegEx,
-        (_substring: string, ...args: any[]) =>
-          // eslint-disable-next-line no-new-func
-          Function(
-            ...(Array(args.length).fill(1).map((x, y) => `p${x + y}`)), // Build args 'p1', 'p2', 'p3'....
-            `return ${replacement}`
-          )(...args)
-      )
-    } else {
-      ticket = branchName.replace(branchRegEx, replacement)
-    }
-    const curMessage = repository.inputBox.value.replace(new RegExp(ticket, 'g'), '')
-    repository.inputBox.value = isSuffix ? `${curMessage}${ticket}` : `${ticket}${curMessage}`
-    vscode.commands.executeCommand("list.focusFirst")
-    vscode.commands.executeCommand("list.select")
+    const ticket = getTicket(repository, branchName, branchRegEx)
+    const currentMessage = repository.inputBox.value.split(ticket).join('');
+
+    repository.inputBox.value = isSuffix ? `${currentMessage}${ticket}` : `${ticket}${currentMessage}`
+    vscode.commands.executeCommand("list.focusFirst");
+    vscode.commands.executeCommand("list.select");
   } else {
     const message = `Pattern ${pattern} not found in branch ${branchName}`
     const editPattern = 'Edit Pattern'
@@ -65,12 +54,42 @@ async function prefixCommit (repository: Repository) {
   }
 }
 
+function getTicket(repository: Repository, branchName: string, branchRegEx: RegExp) {
+  const { replacement = '[$1] ', replacementIsFunction } = vscode.workspace.getConfiguration('gitPrefix')
+  const _replacement = replaceTokensInReplacement(repository, replacement);
+
+  if (replacementIsFunction) {
+    return branchName.replace(
+      branchRegEx,
+      (_substring: string, ...args: any[]) =>
+        // eslint-disable-next-line no-new-func
+        Function(
+          ...(Array(args.length).fill(1).map((x, y) => `p${x + y}`)), // Build args 'p1', 'p2', 'p3'....
+          `return ${_replacement}`
+        )(...args)
+    )
+  }
+
+  return branchName.replace(branchRegEx, _replacement)
+}
+
+function replaceTokensInReplacement(repository: Repository, replacement: string) {
+  const tokens = {
+    folder: repository.rootUri.path.split('/').slice(-1)[0],
+    parentFolder: repository.rootUri.path.split('/').slice(-2,-1)[0],
+  }
+
+  return Object.entries(tokens).reduce((acc, [key, value]) =>
+    acc.replace(`[${key}]`, value)
+  , replacement);
+}
+
 function getGitExtension () {
   const vscodeGit = vscode.extensions.getExtension<GitExtension>('vscode.git')
   const gitExtension = vscodeGit && vscodeGit.exports
   return gitExtension && gitExtension.getAPI(1)
 }
 
-export function deactivate () { 
+export function deactivate () {
   // called when extension is deactivated
 }
