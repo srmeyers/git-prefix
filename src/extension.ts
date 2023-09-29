@@ -50,7 +50,8 @@ async function prefixCommit (repository: Repository) {
     } else {
       ticket = branchName.replace(branchRegEx, replacement)
     }
-    repository.inputBox.value = isSuffix ? `${repository.inputBox.value}${ticket}` : `${ticket}${repository.inputBox.value}`
+    const curMessage = repository.inputBox.value.replace(new RegExp(ticket, 'g'), '')
+    repository.inputBox.value = isSuffix ? `${curMessage}${ticket}` : `${ticket}${curMessage}`
     vscode.commands.executeCommand("list.focusFirst")
     vscode.commands.executeCommand("list.select")
   } else {
