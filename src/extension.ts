@@ -51,6 +51,8 @@ async function prefixCommit (repository: Repository) {
       ticket = branchName.replace(branchRegEx, replacement)
     }
     repository.inputBox.value = isSuffix ? `${repository.inputBox.value}${ticket}` : `${ticket}${repository.inputBox.value}`
+    vscode.commands.executeCommand("list.focusFirst")
+    vscode.commands.executeCommand("list.select")
   } else {
     const message = `Pattern ${pattern} not found in branch ${branchName}`
     const editPattern = 'Edit Pattern'
