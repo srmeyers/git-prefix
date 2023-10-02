@@ -80,7 +80,7 @@ function replaceTokensInReplacement(repository: Repository, replacement: string)
   }
 
   return Object.entries(tokens).reduce((acc, [key, value]) =>
-    acc.replace(`[${key}]`, value)
+    acc.replace(`$${key}`, value)
   , replacement);
 }
 
