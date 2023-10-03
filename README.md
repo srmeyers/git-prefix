@@ -1,6 +1,3 @@
-[![](https://vsmarketplacebadge.apphb.com/version-short/srmeyers.git-prefix.svg)](https://marketplace.visualstudio.com/items?itemName=srmeyers.git-prefix)
-
-
 # Git Prefix
 
 ## New in 1.3.0
@@ -38,5 +35,14 @@ entire branch name.
   > Example : p1 + (p3 ? \`(${p2}): ${p4.replace(/-/g, ' ')}\` : p2.replace(/-/g, ' '))
 * `gitPrefix.replacement`: Regular expression replacement string to place into commit message. Default is `"[$1] "`.
 
+## Replacement Tokens
+
+There's a few replacement tokens the extension provides in order to let your messages be a little bit more fluid.
+
+* `[folder]`: the folder name of the root of the repository that is currently active
+* `[parentFolder]`: the folder name of the parent folder of the root of the repository that is currently active
+
+These can be used in the `gitPrefix.replacement` value.
+  > Example : `"[$parentFolder/$folder/$1] "`
 
 **Happy Committing!**
