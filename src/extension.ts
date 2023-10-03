@@ -61,8 +61,8 @@ function getTicket(repository: Repository, branchName: string, branchRegEx: RegE
   if (replacementIsFunction) {
     return branchName.replace(
       branchRegEx,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (_substring: string, ...args: any[]) =>
-        // eslint-disable-next-line no-new-func
         Function(
           ...(Array(args.length).fill(1).map((x, y) => `p${x + y}`)), // Build args 'p1', 'p2', 'p3'....
           `return ${_replacement}`

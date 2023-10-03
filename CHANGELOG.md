@@ -2,6 +2,9 @@
 
 All notable changes to the "git-prefix" extension will be documented in this file.
 
+### 1.3.2 (2023-10-02)
+- Added folder and parentFolder replacement tokens.
+
 ### 1.3.1 (2022-12-10)
 - Fix finding rootUri when multiple repositories are open.
 
