@@ -39,8 +39,8 @@ entire branch name.
 
 There's a few replacement tokens the extension provides in order to let your messages be a little bit more fluid.
 
-* `[folder]`: the folder name of the root of the repository that is currently active
-* `[parentFolder]`: the folder name of the parent folder of the root of the repository that is currently active
+* `$folder`: the folder name of the root of the repository that is currently active
+* `$parentFolder`: the folder name of the parent folder of the root of the repository that is currently active
 
 These can be used in the `gitPrefix.replacement` value.
   > Example : `"[$parentFolder/$folder/$1] "`
