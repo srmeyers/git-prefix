@@ -41,8 +41,11 @@ async function prefixCommit (repository: Repository) {
     const currentMessage = repository.inputBox.value.split(ticket).join('');
 
     repository.inputBox.value = isSuffix ? `${currentMessage}${ticket}` : `${ticket}${currentMessage}`
-    vscode.commands.executeCommand("list.focusFirst");
-    vscode.commands.executeCommand("list.select");
+
+    if (vscode.workspace.workspaceFolders?.length === 1) {
+      vscode.commands.executeCommand("list.focusFirst");
+      vscode.commands.executeCommand("list.select");
+    }
   } else {
     const message = `Pattern ${pattern} not found in branch ${branchName}`
     const editPattern = 'Edit Pattern'
